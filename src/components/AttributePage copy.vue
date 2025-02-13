@@ -37,16 +37,6 @@ const attributes = reactive([
   { key: "KO", name: "Konstitution", value: 8, increased: false },
   { key: "KK", name: "Körperkraft", value: 8, increased: false },
 ]);
-
-function setAttribute(attribute) {
-  attribute.increased = false
-}
-
-function increaseAttribute(attribute) {
-  attribute.increased = !attribute.increased
-  attribute.value = attribute.increased ? attribute.value + 1 : attribute.value - 1
-  // calcEverythingAssociated(attribute.key)
-}
 </script>
 
 <template>
@@ -78,6 +68,7 @@ function increaseAttribute(attribute) {
       class="attribute-item"
     >
       <!-- <span> -->
+      {{ attribute.name }}
       <div class="attribute-info">
         <span class="attribute-key">{{ attribute.key }}</span>
         <span class="attribute-name">{{ attribute.name }}</span>
@@ -124,115 +115,19 @@ function increaseAttribute(attribute) {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.container {
-  display: flex;
-  justify-content: space-between;
+h3 {
+  margin: 40px 0 0;
 }
-
-.column {
-  width: 48%;
+ul {
+  list-style-type: none;
+  padding: 0;
 }
-
-.attribute-item,
-.skill-item {
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  white-space: nowrap; /* Prevent line breaks within the items */
+li {
+  display: inline-block;
+  margin: 0 10px;
 }
-
-.attribute-info,
-.skill-info {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.combatSkill-info {
-  display: flex;
-  justify-content: space-between;
-  width: 60%;
-}
-
-.attackOrBlock {
-  display: flex;
-  justify-content: space-between;
-  width: 20%;
-}
-
-.skill-info-highlighted {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #3acf4b; /* Slightly darker greenish background on hover */
-  color: #713604; /* Change the font color to white when active */
-  border-radius: 8px; /* Rounded corners for a modern feel */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Soft shadow for depth */
-  transition:
-    background-color 0.3s ease,
-    box-shadow 0.3s ease; /* Smooth transitions */
-  font-weight: bold; /* bold font for emphasis */
-  width: 100%;
-}
-
-.combatSkill-info-highlighted {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #3acf4b; /* Slightly darker greenish background on hover */
-  color: #713604; /* Change the font color to white when active */
-  border-radius: 8px; /* Rounded corners for a modern feel */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Soft shadow for depth */
-  transition:
-    background-color 0.3s ease,
-    box-shadow 0.3s ease; /* Smooth transitions */
-  font-weight: bold; /* bold font for emphasis */
-  width: 60%;
-}
-
-.attackOrBlock-highlighted {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #3acf4b; /* Slightly darker greenish background on hover */
-  color: #713604; /* Change the font color to white when active */
-  border-radius: 8px; /* Rounded corners for a modern feel */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Soft shadow for depth */
-  transition:
-    background-color 0.3s ease,
-    box-shadow 0.3s ease; /* Smooth transitions */
-  font-weight: bold; /* bold font for emphasis */
-  width: 20%;
-}
-
-.skill-info-highlighted:hover,
-.combatSkill-info-highlighted:hover,
-.attackOrBlock-highlighted:hover {
-  background-color: #51cf5f; /* Slightly darker blue on hover */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* More pronounced shadow on hover */
-}
-
-.attribute-name,
-.attribute-key,
-.attribute-value,
-.skill-key,
-.skill-name,
-.skill-attributes,
-.skill-value {
-  margin-right: 10px;
-  flex-shrink: 0; /* Prevent shrinking */
-  overflow: hidden;
-  text-overflow: ellipsis; /* Truncate text with ellipsis if it overflows */
-}
-
-.attribute-input {
-  flex-shrink: 0;
-}
-
-.attribute-input-highlighted {
-  flex-shrink: 0;
-  color: #3acf4b;
+a {
+  color: #42b983;
 }
 
 button {
@@ -268,50 +163,34 @@ button.highlight-button:hover {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Increase shadow for hover effect */
 }
 
-/* Badge styling for the highlighted skill sum */
-.badge {
-  border: 1px solid #aaa;
-  padding: 5px 10px;
-  border-radius: 12px;
-  font-size: 14px;
-  margin-left: 10px;
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+.attribute-item,
+.skill-item {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  white-space: nowrap; /* Prevent line breaks within the items */
 }
 
-/* Badge styling for the highlighted skill sum */
-.highlight-badge {
-  background-color: #3acf4b;
-  color: #713604;
-  padding: 5px 10px;
-  border-radius: 12px;
-  font-size: 14px;
-  margin-left: 10px;
+.attribute-input {
+  flex-shrink: 0;
 }
 
-h3,
-h4 {
-  margin-bottom: 15px;
+.attribute-input-highlighted {
+  flex-shrink: 0;
+  color: #3acf4b;
 }
 
-input {
-  background-color: #2c3e50; /* Darker background for modern look */
-  color: #ecf0f1; /* Light text for contrast */
-  border: 1px solid #34495e; /* Subtle, softer border */
-  padding: 10px 15px;
-  border-radius: 6px; /* Rounded corners */
-  font-size: 16px;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle inner shadow for depth */
-  transition:
-    border-color 0.3s ease,
-    box-shadow 0.3s ease; /* Smooth transitions */
+button.highlight-button {
+  background-color: #3acf4b; /* Modern blue background for active state */
+  color: #713604; /* Change the font color to white when active */
 }
 
-input:focus {
-  border-color: #1abc9c; /* Slightly brighter border on focus */
-  box-shadow: 0 0 5px rgba(26, 188, 156, 0.5); /* Add a subtle glow effect on focus */
-  outline: none; /* Remove the default outline */
-}
-
-input::placeholder {
-  color: #7f8c8d; /* Slightly lighter placeholder text */
+.column {
+  width: 48%;
 }
 </style>
