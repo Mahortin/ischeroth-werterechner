@@ -1,23 +1,10 @@
-<script setup>
-// import { ref, reactive, computed } from 'vue'
-import { ref } from "vue";
-const count = ref(0);
-
-// eslint-disable-next-line
-function increment() {
-  count.value++;
-}
-
-// const attributes = reactive([
-//   { key: 'MU', name: 'Mut', value: 8, increased: false },
-//   { key: 'KL', name: 'Klugheit', value: 8, increased: false },
-//   { key: 'IN', name: 'Intuition', value: 8, increased: false },
-//   { key: 'CH', name: 'Charisma', value: 8, increased: false },
-//   { key: 'FF', name: 'Fingerfertigkeit', value: 8, increased: false },
-//   { key: 'GE', name: 'Gewandheit', value: 8, increased: false },
-//   { key: 'KO', name: 'Konstitution', value: 8, increased: false },
-//   { key: 'KK', name: 'Körperkraft', value: 8, increased: false }
-// ])
+<script>
+export default {
+  name: "HelloWorld",
+  props: {
+    msg: String,
+  },
+};
 </script>
 
 <template>
@@ -106,33 +93,6 @@ function increment() {
       </li>
     </ul>
   </div>
-  <div class="column">
-    <h1>Eigenschaften</h1>
-    <button @click="increment">
-      {{ count }}
-    </button>
-
-    <!-- <div v-for="attribute in attributes" :key="attribute.key" class="attribute-item">
-        <div class="attribute-info">
-          <span class="attribute-key">{{ attribute.key }}</span>
-          <span class="attribute-name">{{ attribute.name }}</span>
-        </div>
-        <input
-          type="number"
-          min="8"
-          max="16"
-          @change="setAttribute(attribute)"
-          v-model.number="attribute.value"
-          :class="[attribute.increased ? 'attribute-input-highlighted' : 'attribute-input']"
-        />
-        <button
-          :class="[attribute.increased ? 'highlight-button' : '']"
-          @click="increaseAttribute(attribute)"
-        >
-          +
-        </button>
-      </div> -->
-  </div>
 </template>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -150,31 +110,5 @@ li {
 }
 a {
   color: #42b983;
-}
-.container {
-  display: flex;
-  justify-content: space-between;
-}
-.attribute-item,
-.skill-item {
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  white-space: nowrap; /* Prevent line breaks within the items */
-}
-
-.attribute-input {
-  flex-shrink: 0;
-}
-
-.attribute-input-highlighted {
-  flex-shrink: 0;
-  color: #3acf4b;
-}
-
-button.highlight-button {
-  background-color: #3acf4b; /* Modern blue background for active state */
-  color: #713604; /* Change the font color to white when active */
 }
 </style>
