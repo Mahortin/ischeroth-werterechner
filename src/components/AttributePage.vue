@@ -137,5 +137,5 @@ function increaseAttribute(attribute) {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
-<style scoped> @import 'shared-styles.scss'</style>
+<style scoped> @import '../assets/shared-styles.scss'</style>
 
