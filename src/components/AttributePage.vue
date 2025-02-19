@@ -2,6 +2,7 @@
 // import { ref, reactive, computed } from 'vue'
 import { ref, reactive } from "vue";
 import SingleAttribute from "./SingleAttribute.vue";
+import { store } from "@/store/store";
 // const count = ref(0);
 const user = reactive({
   email: "",
@@ -57,6 +58,20 @@ function warning() {
 </script>
 
 <template>
+
+<SingleAttribute
+      v-for="attribute in store.attributes"
+      :key="attribute.key"
+      :attributeKey="attribute.key"
+      :attributeName="attribute.name"
+      :attributeValue="attribute.basevalue"
+      @attribute-changed="store.updateAttribute(attribute)"
+    >
+    </SingleAttribute>
+
+<button @click="store.increment">
+    From A: {{ store.count }}
+  </button>
   <div class="column">
     <h1>Eigenschaften</h1>
     <SingleAttribute

@@ -2,6 +2,7 @@
 // import { ref, reactive, computed } from 'vue'
 // import { ref, reactive } from "vue";
 import { defineProps, defineEmits } from "vue";
+import { store } from "@/store/store";
 
 defineProps({
   attributeKey: String,
@@ -20,6 +21,10 @@ function attributeChanged() {
   <!-- <h4>{{ attributeName }}</h4>
   <h5>{{ attributeKey }}</h5>
   <h5>{{ attributeValue }}</h5> -->
+
+  <button @click="store.increment">
+    From B: {{ store.count }}
+  </button>
 
   <div class="attribute-info">
     <span class="attribute-key">{{ attributeKey }}</span>
