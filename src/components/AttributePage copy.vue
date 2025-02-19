@@ -74,20 +74,23 @@ const attributes = reactive([
         <span class="attribute-name">{{ attribute.name }}</span>
       </div>
       <input
-          type="number"
-          min="8"
-          max="16"
-          @change="setAttribute(attribute)"
-          v-model.number="attribute.value"
-          :class="[attribute.increased ? 'attribute-input-highlighted' : 'attribute-input']"
-        />
-        <button
-          :class="[attribute.increased ? 'highlight-button' : '']"
-          @click="increaseAttribute(attribute)"
-        >
-          +
-        </button>
-        
+        type="number"
+        min="8"
+        max="16"
+        @change="setAttribute(attribute)"
+        v-model.number="attribute.value"
+        :class="[
+          attribute.increased
+            ? 'attribute-input-highlighted'
+            : 'attribute-input',
+        ]"
+      />
+      <button
+        :class="[attribute.increased ? 'highlight-button' : '']"
+        @click="increaseAttribute(attribute)"
+      >
+        +
+      </button>
     </div>
 
     <!-- <div v-for="attribute in attributes" :key="attribute.key" class="attribute-item">
@@ -140,9 +143,7 @@ button {
   font-size: 16px;
   cursor: pointer;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
-  transition:
-    background-color 0.3s ease,
-    box-shadow 0.3s ease; /* Smooth transition effects */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition effects */
 }
 
 /* Active state: Change only the background color */

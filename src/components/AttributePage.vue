@@ -52,9 +52,8 @@ function increaseAttribute(attribute) {
 }
 
 function warning() {
-  window.confirm("sometext")
+  window.confirm("sometext");
 }
-
 </script>
 
 <template>

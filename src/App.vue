@@ -1,20 +1,20 @@
 <template>
-  <img alt="Vue logo" src="./assets/phoenix.png">
+  <img alt="Vue logo" src="./assets/phoenix.png" />
   <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
   <AttributePage></AttributePage>
 </template>
 
 <script>
-import AttributePage from './components/AttributePage.vue';
+import AttributePage from "./components/AttributePage.vue";
 // import HelloWorld from './components/HelloWorld.vue';
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    AttributePage
+    AttributePage,
     // , HelloWorld
-  }
-}
+  },
+};
 </script>
 
 <style>

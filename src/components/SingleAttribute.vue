@@ -9,10 +9,10 @@ defineProps({
   attributeValue: Number,
 });
 
-const emit = defineEmits(['attribute-changed'])
+const emit = defineEmits(["attribute-changed"]);
 
-function attributeChanged(){
-  emit
+function attributeChanged() {
+  emit;
 }
 </script>
 
@@ -25,12 +25,12 @@ function attributeChanged(){
     <span class="attribute-key">{{ attributeKey }}</span>
     <span class="attribute-name">{{ attributeName }}</span>
     <input
-    type="number"
-    value="{{ attributeValue }}"
-    min="8"
-    max="16"
-    @change="attributeChanged(attribute)"
-  />
+      type="number"
+      value="{{ attributeValue }}"
+      min="8"
+      max="16"
+      @change="attributeChanged(attribute)"
+    />
   </div>
 
   <!-- <input
@@ -50,4 +50,6 @@ function attributeChanged(){
 </template>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped> @import '../assets/shared-styles.scss'</style>
+<style scoped>
+@import "../assets/shared-styles.scss";
+</style>
