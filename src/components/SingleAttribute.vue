@@ -18,24 +18,13 @@ function attributeChanged() {
 </script>
 
 <template>
-  <button @click="attributeChanged()">
-    Changed
-  </button>
+  <button @click="attributeChanged()">Changed</button>
 
-  <button @click="store.increment">
-    From B: {{ store.count }}
-  </button>
+  <button @click="store.increment">From B: {{ store.count }}</button>
 
   <div class="attribute-info">
     <span class="attribute-key">{{ attributeKey }}</span>
     <span class="attribute-name">{{ attributeName }}</span>
-    <!-- <input
-      type="number"
-      value="{{ attributeValue }}"
-      min="8"
-      max="16"
-      @change="attributeChanged(attribute)"
-    /> -->
     <input
       type="number"
       value="{{ attributeValue }}"
@@ -43,7 +32,9 @@ function attributeChanged() {
       placeholder="8"
       min="8"
       max="16"
-      @change="store.updateAttribute({key: attributeKey, value: currentValue})"
+      @change="
+        store.updateAttribute({ key: attributeKey, value: currentValue })
+      "
     />
   </div>
 </template>

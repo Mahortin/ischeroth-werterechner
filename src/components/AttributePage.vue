@@ -29,40 +29,15 @@ function mutateDeeply() {
   obj.value.arr.push("baz");
 }
 
-const attributes = reactive([
-  { key: "MU", name: "Mut", value: 8, increased: false },
-  { key: "KL", name: "Klugheit", value: 8, increased: false },
-  { key: "IN", name: "Intuition", value: 8, increased: false },
-  { key: "CH", name: "Charisma", value: 8, increased: false },
-  { key: "FF", name: "Fingerfertigkeit", value: 8, increased: false },
-  { key: "GE", name: "Gewandheit", value: 8, increased: false },
-  { key: "KO", name: "Konstitution", value: 8, increased: false },
-  { key: "KK", name: "Körperkraft", value: 8, increased: false },
-]);
-
-function setAttribute(attribute) {
-  attribute.increased = false;
-}
-
-function increaseAttribute(attribute) {
-  attribute.increased = !attribute.increased;
-  attribute.value = attribute.increased
-    ? attribute.value + 1
-    : attribute.value - 1;
-  // calcEverythingAssociated(attribute.key)
-}
-
 function warning() {
   window.confirm("sometext");
 }
 </script>
 
 <template>
-  <button @click="store.updateAttribute(null)">update Attribute</button>
-  <button @click="store.increment">
-    From A: {{ store.count }}
-  </button>
-<SingleAttribute
+  <div class="column">
+    <h1>Eigenschaften</h1>
+    <SingleAttribute
       v-for="attribute in store.attributes"
       :key="attribute.key"
       :attributeKey="attribute.key"
@@ -72,25 +47,10 @@ function warning() {
     >
     </SingleAttribute>
 
-
-    
-  <div class="column">
-    <h1>Eigenschaften</h1>
-    <SingleAttribute
-      v-for="attribute in attributes"
-      :key="attribute.key"
-      :attributeKey="attribute.key"
-      :attributeName="attribute.name"
-      :attributeValue="attribute.value"
-      @attribute-changed="warning()"
-    >
-    </SingleAttribute>
+    <h1>Übungsbereich</h1>
     <button @click="warning">WARNING!</button>
-    <h1>Eigenschaften</h1>
-    <!-- count for ref example -->
-    <!-- <button @click="increment">
-      {{ count }}
-    </button> -->
+    <button @click="store.updateAttribute(null)">update Attribute</button>
+    <button @click="store.increment">From A: {{ store.count }}</button>
 
     <!-- count for reactive example -->
     <button @click="login">Login</button>
@@ -105,58 +65,6 @@ function warning() {
       {{ obj.nested.count }}
       <!-- mybutton -->
     </button>
-
-    <h1 Attributes></h1>
-    <div
-      v-for="attribute in attributes"
-      :key="attribute.key"
-      class="attribute-item"
-    >
-      <!-- <span> -->
-      <div class="attribute-info">
-        <span class="attribute-key">{{ attribute.key }}</span>
-        <span class="attribute-name">{{ attribute.name }}</span>
-      </div>
-      <input
-        type="number"
-        min="8"
-        max="16"
-        @change="setAttribute(attribute)"
-        v-model.number="attribute.value"
-        :class="[
-          attribute.increased
-            ? 'attribute-input-highlighted'
-            : 'attribute-input',
-        ]"
-      />
-      <button
-        :class="[attribute.increased ? 'highlight-button' : '']"
-        @click="increaseAttribute(attribute)"
-      >
-        +
-      </button>
-    </div>
-
-    <!-- <div v-for="attribute in attributes" :key="attribute.key" class="attribute-item">
-        <div class="attribute-info">
-          <span class="attribute-key">{{ attribute.key }}</span>
-          <span class="attribute-name">{{ attribute.name }}</span>
-        </div>
-        <input
-          type="number"
-          min="8"
-          max="16"
-          @change="setAttribute(attribute)"
-          v-model.number="attribute.value"
-          :class="[attribute.increased ? 'attribute-input-highlighted' : 'attribute-input']"
-        />
-        <button
-          :class="[attribute.increased ? 'highlight-button' : '']"
-          @click="increaseAttribute(attribute)"
-        >
-          +
-        </button>
-      </div> -->
   </div>
 </template>
 
