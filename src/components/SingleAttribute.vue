@@ -24,14 +24,15 @@ function attributeChanged(){
   <div class="attribute-info">
     <span class="attribute-key">{{ attributeKey }}</span>
     <span class="attribute-name">{{ attributeName }}</span>
-  </div>
-  <input
+    <input
     type="number"
     value="{{ attributeValue }}"
     min="8"
     max="16"
     @change="attributeChanged(attribute)"
   />
+  </div>
+
   <!-- <input
           type="number"
           min="8"

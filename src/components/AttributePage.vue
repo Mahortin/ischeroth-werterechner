@@ -40,30 +40,36 @@ const attributes = reactive([
 ]);
 
 function setAttribute(attribute) {
-  attribute.increased = false
+  attribute.increased = false;
 }
 
 function increaseAttribute(attribute) {
-  attribute.increased = !attribute.increased
-  attribute.value = attribute.increased ? attribute.value + 1 : attribute.value - 1
+  attribute.increased = !attribute.increased;
+  attribute.value = attribute.increased
+    ? attribute.value + 1
+    : attribute.value - 1;
   // calcEverythingAssociated(attribute.key)
+}
+
+function warning() {
+  window.confirm("sometext")
 }
 
 </script>
 
 <template>
-
-
   <div class="column">
     <h1>Eigenschaften</h1>
-  <SingleAttribute 
-  v-for="(attribute) in attributes"
-  :key="attribute.key"
-  :attributeKey="attribute.key"
-  :attributeName="attribute.name"
-  :attributeValue="attribute.value"
-  >
-</SingleAttribute>
+    <SingleAttribute
+      v-for="attribute in attributes"
+      :key="attribute.key"
+      :attributeKey="attribute.key"
+      :attributeName="attribute.name"
+      :attributeValue="attribute.value"
+      @attribute-changed="warning()"
+    >
+    </SingleAttribute>
+    <button @click="warning">WARNING!</button>
     <h1>Eigenschaften</h1>
     <!-- count for ref example -->
     <!-- <button @click="increment">
@@ -96,20 +102,23 @@ function increaseAttribute(attribute) {
         <span class="attribute-name">{{ attribute.name }}</span>
       </div>
       <input
-          type="number"
-          min="8"
-          max="16"
-          @change="setAttribute(attribute)"
-          v-model.number="attribute.value"
-          :class="[attribute.increased ? 'attribute-input-highlighted' : 'attribute-input']"
-        />
-        <button
-          :class="[attribute.increased ? 'highlight-button' : '']"
-          @click="increaseAttribute(attribute)"
-        >
-          +
-        </button>
-        
+        type="number"
+        min="8"
+        max="16"
+        @change="setAttribute(attribute)"
+        v-model.number="attribute.value"
+        :class="[
+          attribute.increased
+            ? 'attribute-input-highlighted'
+            : 'attribute-input',
+        ]"
+      />
+      <button
+        :class="[attribute.increased ? 'highlight-button' : '']"
+        @click="increaseAttribute(attribute)"
+      >
+        +
+      </button>
     </div>
 
     <!-- <div v-for="attribute in attributes" :key="attribute.key" class="attribute-item">
@@ -137,5 +146,6 @@ function increaseAttribute(attribute) {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
-<style scoped> @import '../assets/shared-styles.scss'</style>
-
+<style scoped>
+@import "../assets/shared-styles.scss";
+</style>
