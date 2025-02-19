@@ -51,7 +51,7 @@ const replaces = [
     console.log("Pushing to gh-pages...");
     await execa("git", ["push", "origin", "HEAD:gh-pages", "--force"]);
     await execa("rm", ["-r", folderName]);
-    await execa("git", ["checkout", "-f", "extend-vue-features"]);
+    await execa("git", ["checkout", "-f", "use-pinia-store"]);
     await execa("git", ["branch", "-D", "gh-pages"]);
 
     // Revert file replaces that we did earlier
