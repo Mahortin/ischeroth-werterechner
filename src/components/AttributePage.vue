@@ -58,7 +58,10 @@ function warning() {
 </script>
 
 <template>
-
+  <button @click="store.updateAttribute(null)">update Attribute</button>
+  <button @click="store.increment">
+    From A: {{ store.count }}
+  </button>
 <SingleAttribute
       v-for="attribute in store.attributes"
       :key="attribute.key"
@@ -69,9 +72,8 @@ function warning() {
     >
     </SingleAttribute>
 
-<button @click="store.increment">
-    From A: {{ store.count }}
-  </button>
+
+    
   <div class="column">
     <h1>Eigenschaften</h1>
     <SingleAttribute

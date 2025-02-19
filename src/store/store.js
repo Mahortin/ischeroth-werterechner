@@ -16,7 +16,12 @@ export const store = reactive({
         {key: 'KO', name: 'Konstitution', basevalue: '8', modValue: '8'},
     ], 
     updateAttribute(attribute){
+        if (attribute == null){
+            window.alert("attribute is null!")
+            return;
+        }
+
+        window.alert("Attribute is: " + attribute + "with values: " + attribute.value + " and key: " + attribute.key)
         this.attributes.find(x => x.key == attribute.key);
-        window.alert("updateAttribute method was called")
     }
   })

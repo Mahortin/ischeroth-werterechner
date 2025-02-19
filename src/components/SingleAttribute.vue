@@ -18,9 +18,9 @@ function attributeChanged() {
 </script>
 
 <template>
-  <!-- <h4>{{ attributeName }}</h4>
-  <h5>{{ attributeKey }}</h5>
-  <h5>{{ attributeValue }}</h5> -->
+  <button @click="attributeChanged()">
+    Changed
+  </button>
 
   <button @click="store.increment">
     From B: {{ store.count }}
@@ -29,32 +29,25 @@ function attributeChanged() {
   <div class="attribute-info">
     <span class="attribute-key">{{ attributeKey }}</span>
     <span class="attribute-name">{{ attributeName }}</span>
-    <input
+    <!-- <input
       type="number"
       value="{{ attributeValue }}"
       min="8"
       max="16"
       @change="attributeChanged(attribute)"
+    /> -->
+    <input
+      type="number"
+      value="{{ attributeValue }}"
+      v-model="currentValue"
+      placeholder="8"
+      min="8"
+      max="16"
+      @change="store.updateAttribute({key: attributeKey, value: currentValue})"
     />
   </div>
-
-  <!-- <input
-          type="number"
-          min="8"
-          max="16"
-          @change="setAttribute(attribute)"
-          v-model.number="attribute.value"
-          :class="[attribute.increased ? 'attribute-input-highlighted' : 'attribute-input']"
-        /> -->
-  <!-- <button
-          :class="[attribute.increased ? 'highlight-button' : '']"
-          @click="increaseAttribute(attribute)"
-        >
-          +
-        </button> -->
 </template>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 @import "../assets/shared-styles.scss";
 </style>
